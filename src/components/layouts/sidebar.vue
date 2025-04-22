@@ -18,19 +18,17 @@ const props = defineProps({
 <template>
   <aside
     :class="[
-      'bg-teal-950 shadow-lg flex sticky top-24 flex-col max-h-[80dvh] min-h-96 rounded-xl transition-all duration-300',
+      'bg-teal-950 shadow-lg flex sticky top-24  flex-col max-h-[80dvh] min-h-96 rounded-xl transition-all duration-300',
       isSidebarCollapsed ? 'w-20' : 'w-64',
     ]"
   >
     <div class="p-6 flex items-center space-x-3">
       <div
-        class="w-10 h-10 rounded-full bg-emerald flex items-center justify-center"
-      >
-        <i class="fas fa-gem text-xl text-dark"></i>
-      </div>
+        class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center"
+      ></div>
       <h1
         :class="[
-          'text-xl font-bold text-emerald transition-opacity duration-300',
+          'text-xl font-bold text-green-400 transition-opacity duration-300',
           isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100',
         ]"
       >
@@ -43,7 +41,7 @@ const props = defineProps({
         <a
           href="#"
           :class="[
-            'sidebar-item flex items-center py-3 rounded-lg text-emerald bg-dark h-12 transition-all duration-300',
+            'hover:bg-black/20 flex items-center py-3 rounded-lg text-green-400 bg-black/40 h-12 transition-all duration-300',
             isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
           ]"
         >
@@ -65,7 +63,7 @@ const props = defineProps({
         <a
           href="#"
           :class="[
-            'sidebar-item flex items-center py-3 rounded-lg text-gray-300 hover:text-emerald h-12 transition-all duration-300',
+            'hover:bg-black/20 flex items-center py-3 rounded-lg text-gray-300 hover:text-green-400 h-12 transition-all duration-300',
             isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
           ]"
         >
@@ -87,7 +85,7 @@ const props = defineProps({
         <a
           href="#"
           :class="[
-            'sidebar-item flex items-center py-3 rounded-lg text-gray-300 hover:text-emerald h-12 transition-all duration-300',
+            'hover:bg-black/20 flex items-center py-3 rounded-lg text-gray-300 hover:text-green-400 h-12 transition-all duration-300',
             isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
           ]"
         >
@@ -109,7 +107,7 @@ const props = defineProps({
         <a
           href="#"
           :class="[
-            'sidebar-item flex items-center py-3 rounded-lg text-gray-300 hover:text-emerald h-12 transition-all duration-300',
+            'hover:bg-black/20 flex items-center py-3 rounded-lg text-gray-300 hover:text-green-400 h-12 transition-all duration-300',
             isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
           ]"
         >
@@ -131,7 +129,7 @@ const props = defineProps({
         <a
           href="#"
           :class="[
-            'sidebar-item flex items-center py-3 rounded-lg text-gray-300 hover:text-emerald h-12 transition-all duration-300',
+            'hover:bg-black/20 flex items-center py-3 rounded-lg text-gray-300 hover:text-green-400 h-12 transition-all duration-300',
             isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
           ]"
         >
