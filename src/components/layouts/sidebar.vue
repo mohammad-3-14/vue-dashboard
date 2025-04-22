@@ -1,0 +1,199 @@
+<script lang="ts" setup>
+import {
+  Squares2X2Icon,
+  ChartBarIcon,
+  ChartPieIcon,
+  BuildingStorefrontIcon,
+  Cog6ToothIcon,
+} from '@heroicons/vue/24/outline';
+
+const props = defineProps({
+  isSidebarCollapsed: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
+
+<template>
+  <aside
+    :class="[
+      'bg-teal-950 shadow-lg flex sticky top-24 flex-col max-h-[80dvh] min-h-96 rounded-xl transition-all duration-300',
+      isSidebarCollapsed ? 'w-20' : 'w-64',
+    ]"
+  >
+    <div class="p-6 flex items-center space-x-3">
+      <div
+        class="w-10 h-10 rounded-full bg-emerald flex items-center justify-center"
+      >
+        <i class="fas fa-gem text-xl text-dark"></i>
+      </div>
+      <h1
+        :class="[
+          'text-xl font-bold text-emerald transition-opacity duration-300',
+          isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100',
+        ]"
+      >
+        EmeraldDash
+      </h1>
+    </div>
+
+    <div class="flex-1 overflow-y-auto pt-4">
+      <nav class="px-4 space-y-1">
+        <a
+          href="#"
+          :class="[
+            'sidebar-item flex items-center py-3 rounded-lg text-emerald bg-dark h-12 transition-all duration-300',
+            isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
+          ]"
+        >
+          <Squares2X2Icon
+            class="w-6 h-6 min-w-6"
+            :class="isSidebarCollapsed ? '' : 'mr-3'"
+          />
+          <span
+            :class="[
+              'transition-opacity duration-300',
+              isSidebarCollapsed
+                ? 'opacity-0 w-0 overflow-hidden'
+                : 'opacity-100',
+            ]"
+          >
+            Dashboard
+          </span>
+        </a>
+        <a
+          href="#"
+          :class="[
+            'sidebar-item flex items-center py-3 rounded-lg text-gray-300 hover:text-emerald h-12 transition-all duration-300',
+            isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
+          ]"
+        >
+          <ChartBarIcon
+            class="w-6 h-6 min-w-6"
+            :class="isSidebarCollapsed ? '' : 'mr-3'"
+          />
+          <span
+            :class="[
+              'transition-opacity duration-300',
+              isSidebarCollapsed
+                ? 'opacity-0 w-0 overflow-hidden'
+                : 'opacity-100',
+            ]"
+          >
+            Analytics
+          </span>
+        </a>
+        <a
+          href="#"
+          :class="[
+            'sidebar-item flex items-center py-3 rounded-lg text-gray-300 hover:text-emerald h-12 transition-all duration-300',
+            isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
+          ]"
+        >
+          <ChartPieIcon
+            class="w-6 h-6 min-w-6"
+            :class="isSidebarCollapsed ? '' : 'mr-3'"
+          />
+          <span
+            :class="[
+              'transition-opacity duration-300',
+              isSidebarCollapsed
+                ? 'opacity-0 w-0 overflow-hidden'
+                : 'opacity-100',
+            ]"
+          >
+            Finance
+          </span>
+        </a>
+        <a
+          href="#"
+          :class="[
+            'sidebar-item flex items-center py-3 rounded-lg text-gray-300 hover:text-emerald h-12 transition-all duration-300',
+            isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
+          ]"
+        >
+          <BuildingStorefrontIcon
+            class="w-6 h-6 min-w-6"
+            :class="isSidebarCollapsed ? '' : 'mr-3'"
+          />
+          <span
+            :class="[
+              'transition-opacity duration-300',
+              isSidebarCollapsed
+                ? 'opacity-0 w-0 overflow-hidden'
+                : 'opacity-100',
+            ]"
+          >
+            Customers
+          </span>
+        </a>
+        <a
+          href="#"
+          :class="[
+            'sidebar-item flex items-center py-3 rounded-lg text-gray-300 hover:text-emerald h-12 transition-all duration-300',
+            isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
+          ]"
+        >
+          <Cog6ToothIcon
+            class="w-6 h-6 min-w-6"
+            :class="isSidebarCollapsed ? '' : 'mr-3'"
+          />
+          <span
+            :class="[
+              'transition-opacity duration-300',
+              isSidebarCollapsed
+                ? 'opacity-0 w-0 overflow-hidden'
+                : 'opacity-100',
+            ]"
+          >
+            Settings
+          </span>
+        </a>
+      </nav>
+
+      <div
+        :class="[
+          'px-4 mt-8 transition-opacity duration-300',
+          isSidebarCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100',
+        ]"
+      ></div>
+    </div>
+
+    <div class="p-4 border-t border-gray-700">
+      <div class="flex items-center">
+        <div
+          :class="[
+            'w-10 h-10 rounded-full bg-green-400',
+            isSidebarCollapsed ? 'mx-auto' : '',
+          ]"
+        ></div>
+        <div
+          :class="[
+            'ml-3 transition-opacity duration-300',
+            isSidebarCollapsed
+              ? 'opacity-0 w-0 overflow-hidden'
+              : 'opacity-100',
+          ]"
+        >
+          <p class="text-sm font-medium">Sarah Johnson</p>
+          <p class="text-xs text-gray-400">Admin</p>
+        </div>
+        <div
+          :class="[
+            'ml-auto relative transition-opacity duration-300',
+            isSidebarCollapsed
+              ? 'opacity-0 w-0 overflow-hidden'
+              : 'opacity-100',
+          ]"
+        >
+          <button class="text-gray-400 hover:text-emerald">
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+</template>
+
+<style scoped></style>
