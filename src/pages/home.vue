@@ -1,4 +1,5 @@
 <script setup lang="ts">
- </script>
+import example from '@/components/pages/home.vue';
+</script>
 
-<template> </template>
+<template><example /></template>
