@@ -193,14 +193,14 @@ function initMainChart(): void {
   };
 
   mainChart = new Chart(chartCtx, config);
-
-  onUnmounted((): void => {
-    if (mainChart) {
-      mainChart.destroy();
-      mainChart = null;
-    }
-  });
 }
+
+onUnmounted((): void => {
+  if (mainChart) {
+    mainChart.destroy();
+    mainChart = null;
+  }
+});
 </script>
 
 <template>
