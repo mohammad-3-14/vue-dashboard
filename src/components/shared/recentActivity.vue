@@ -12,14 +12,14 @@ const props = defineProps({
 
 <template>
   <div class="lg:col-span-2 bg-teal-950 rounded-xl p-6 border border-gray-700">
-    <h3 class="font-semibold mb-6">Recent Activity</h3>
+    <h3 class="font-semibold mb-6">{{ $t('activities.recentActivity') }}</h3>
     <div class="space-y-4">
       <div
         v-for="(activity, index) in recentActivities"
         :key="index"
         class="flex items-start"
       >
-        <div class="bg-teal-800 bg-opacity-10 p-2 rounded-lg mr-4">
+        <div class="bg-teal-800 bg-opacity-10 p-2 rounded-lg me-4">
           <component
             :is="activity.icon"
             class="text-green-400 size-6 stroke-2"
@@ -37,7 +37,7 @@ const props = defineProps({
       </div>
     </div>
     <button class="mt-6 text-green-400 text-sm font-medium flex items-center">
-      View All Activity <i class="fas fa-arrow-right ml-2"></i>
+      {{ $t('activities.viewAllActivity') }}
     </button>
   </div>
 </template>

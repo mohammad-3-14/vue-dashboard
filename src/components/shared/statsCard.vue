@@ -10,7 +10,8 @@ const props = defineProps<StatItem>();
         <p class="text-gray-400 text-sm">{{ label }}</p>
         <h3 class="text-2xl font-bold mt-1">{{ value }}</h3>
         <p class="text-sm mt-2 flex items-center">
-          <i class="fas"></i> {{ changePercentage }}% from last month
+          <i class="fas"></i> {{ changePercentage }}%
+          {{ $t('common.fromLastMonth') }}
         </p>
       </div>
       <div class="bg-teal-800 bg-opacity-10 p-2 rounded-lg">

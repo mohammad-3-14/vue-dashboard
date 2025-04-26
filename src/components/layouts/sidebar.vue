@@ -18,7 +18,7 @@ const props = defineProps({
 <template>
   <aside
     :class="[
-      'bg-teal-950 shadow-lg flex sticky top-24  flex-col max-h-[80dvh] min-h-96 rounded-xl transition-all duration-300',
+      'bg-teal-950 shadow-lg flex sticky top-24 z-0 flex-col max-h-[80dvh] min-h-96 rounded-xl transition-all duration-300',
       isSidebarCollapsed ? 'w-20' : 'w-64',
     ]"
   >
@@ -32,7 +32,7 @@ const props = defineProps({
           isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100',
         ]"
       >
-        EmeraldDash
+        {{ $t('sidebar.title') }}
       </h1>
     </div>
 
@@ -47,7 +47,7 @@ const props = defineProps({
         >
           <Squares2X2Icon
             class="w-6 h-6 min-w-6"
-            :class="isSidebarCollapsed ? '' : 'mr-3'"
+            :class="isSidebarCollapsed ? '' : 'me-3'"
           />
           <span
             :class="[
@@ -57,9 +57,10 @@ const props = defineProps({
                 : 'opacity-100',
             ]"
           >
-            Dashboard
+            {{ $t('sidebar.dashboard') }}
           </span>
         </a>
+
         <a
           href="#"
           :class="[
@@ -69,7 +70,7 @@ const props = defineProps({
         >
           <ChartBarIcon
             class="w-6 h-6 min-w-6"
-            :class="isSidebarCollapsed ? '' : 'mr-3'"
+            :class="isSidebarCollapsed ? '' : 'me-3'"
           />
           <span
             :class="[
@@ -79,9 +80,10 @@ const props = defineProps({
                 : 'opacity-100',
             ]"
           >
-            Analytics
+            {{ $t('sidebar.analytics') }}
           </span>
         </a>
+
         <a
           href="#"
           :class="[
@@ -91,7 +93,7 @@ const props = defineProps({
         >
           <ChartPieIcon
             class="w-6 h-6 min-w-6"
-            :class="isSidebarCollapsed ? '' : 'mr-3'"
+            :class="isSidebarCollapsed ? '' : 'me-3'"
           />
           <span
             :class="[
@@ -101,9 +103,10 @@ const props = defineProps({
                 : 'opacity-100',
             ]"
           >
-            Finance
+            {{ $t('sidebar.finance') }}
           </span>
         </a>
+
         <a
           href="#"
           :class="[
@@ -113,7 +116,7 @@ const props = defineProps({
         >
           <BuildingStorefrontIcon
             class="w-6 h-6 min-w-6"
-            :class="isSidebarCollapsed ? '' : 'mr-3'"
+            :class="isSidebarCollapsed ? '' : 'me-3'"
           />
           <span
             :class="[
@@ -123,9 +126,10 @@ const props = defineProps({
                 : 'opacity-100',
             ]"
           >
-            Customers
+            {{ $t('sidebar.customers') }}
           </span>
         </a>
+
         <a
           href="#"
           :class="[
@@ -135,7 +139,7 @@ const props = defineProps({
         >
           <Cog6ToothIcon
             class="w-6 h-6 min-w-6"
-            :class="isSidebarCollapsed ? '' : 'mr-3'"
+            :class="isSidebarCollapsed ? '' : 'me-3'"
           />
           <span
             :class="[
@@ -145,7 +149,7 @@ const props = defineProps({
                 : 'opacity-100',
             ]"
           >
-            Settings
+            {{ $t('sidebar.settings') }}
           </span>
         </a>
       </nav>
@@ -155,7 +159,9 @@ const props = defineProps({
           'px-4 mt-8 transition-opacity duration-300',
           isSidebarCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100',
         ]"
-      ></div>
+      >
+        <!-- خالیه الان -->
+      </div>
     </div>
 
     <div class="p-4 border-t border-gray-700">
@@ -166,29 +172,27 @@ const props = defineProps({
             isSidebarCollapsed ? 'mx-auto' : '',
           ]"
         ></div>
+
         <div
           :class="[
-            'ml-3 transition-opacity duration-300',
+            'ms-3 transition-opacity duration-300',
             isSidebarCollapsed
               ? 'opacity-0 w-0 overflow-hidden'
               : 'opacity-100',
           ]"
         >
-          <p class="text-sm font-medium">Sarah Johnson</p>
-          <p class="text-xs text-gray-400">Admin</p>
+          <p class="text-sm font-medium">{{ $t('sidebar.user_name') }}</p>
+          <p class="text-xs text-gray-400">{{ $t('sidebar.user_role') }}</p>
         </div>
+
         <div
           :class="[
-            'ml-auto relative transition-opacity duration-300',
+            'ms-auto relative transition-opacity duration-300',
             isSidebarCollapsed
               ? 'opacity-0 w-0 overflow-hidden'
               : 'opacity-100',
           ]"
-        >
-          <button class="text-gray-400 hover:text-emerald">
-            <i class="fas fa-ellipsis-v"></i>
-          </button>
-        </div>
+        ></div>
       </div>
     </div>
   </aside>
