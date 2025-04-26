@@ -21,3 +21,5 @@ export interface Product {
   category: string;
   price: string;
 }
+
+export type SupportedLanguages = 'en' | 'fa';
