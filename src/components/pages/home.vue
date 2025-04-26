@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, onUnmounted } from 'vue';
 import StatsCard from '@/components/shared/statsCard.vue';
 import type { StatItem, Product, Activity } from '@/types/components';
 import TopProducts from '@/components/shared/topProducts.vue';
-import RcentActivity from '@/components/shared/recentActivity.vue';
+import RecentActivity from '@/components/shared/recentActivity.vue';
 
 import {
   Chart,
@@ -193,6 +193,13 @@ function initMainChart(): void {
   };
 
   mainChart = new Chart(chartCtx, config);
+
+  onUnmounted((): void => {
+    if (mainChart) {
+      mainChart.destroy();
+      mainChart = null;
+    }
+  });
 }
 </script>
 
@@ -291,7 +298,7 @@ function initMainChart(): void {
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    <RcentActivity :recentActivities="recentActivities" />
+    <RecentActivity :recentActivities="recentActivities" />
     <TopProducts :topProducts="topProducts" />
   </div>
 </template>
