@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { ref, onMounted, computed, onUnmounted } from 'vue';
+import { ref, onMounted, computed, onUnmounted, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import StatsCard from '@/components/shared/statsCard.vue';
 import type { StatItem, Product, Activity } from '@/types/components';
 import TopProducts from '@/components/shared/topProducts.vue';
@@ -28,6 +29,10 @@ import {
   TruckIcon,
 } from '@heroicons/vue/24/outline';
 
+// i18n
+const { t, locale } = useI18n();
+
+// Refs
 const mainChartRef = ref<HTMLCanvasElement | null>(null);
 let mainChart: Chart | null = null;
 
@@ -41,94 +46,100 @@ const dashOffset = computed((): number => {
   return circumference.value - (70 / 100) * circumference.value;
 });
 
-const dashboardStats: StatItem[] = [
+// Dashboard Stats - به صورت computed
+const dashboardStats = computed((): StatItem[] => [
   {
-    label: 'Total Revenue',
+    label: t('dashboard.totalRevenue'),
     value: '$24,780',
     changePercentage: 12.5,
-    changeText: '12.5% from last month',
+    changeText: t('dashboard.changeFromLastMonth', { value: '12.5%' }),
     icon: BanknotesIcon,
   },
   {
-    label: 'New Customers',
+    label: t('dashboard.newCustomers'),
     value: '1,245',
     changePercentage: 8.2,
-    changeText: '8.2% from last month',
+    changeText: t('dashboard.changeFromLastMonth', { value: '8.2%' }),
     icon: ChartBarIcon,
   },
   {
-    label: 'Active Projects',
+    label: t('dashboard.activeProjects'),
     value: '48',
     changePercentage: -2.1,
-    changeText: '2.1% from last month',
+    changeText: t('dashboard.changeFromLastMonth', { value: '2.1%' }),
     icon: FireIcon,
   },
   {
-    label: 'Conversion Rate',
+    label: t('dashboard.conversionRate'),
     value: '3.6%',
     changePercentage: 1.8,
-    changeText: '1.8% from last month',
+    changeText: t('dashboard.changeFromLastMonth', { value: '1.8%' }),
     icon: SparklesIcon,
   },
-];
+]);
 
-const topProducts = ref<Product[]>([
+// Top Products - به صورت computed
+const topProducts = computed((): Product[] => [
   {
     icon: DevicePhoneMobileIcon,
-    name: 'iPhone 14 Pro',
-    category: 'Mobile Phones',
+    name: t('products.iphone14'),
+    category: t('products.mobilePhones'),
     price: '$899',
   },
   {
     icon: AcademicCapIcon,
-    name: 'Online Course',
-    category: 'Education',
+    name: t('products.onlineCourse'),
+    category: t('products.education'),
     price: '$29',
   },
   {
     icon: BookOpenIcon,
-    name: 'Programming Guide',
-    category: 'Educational Books',
+    name: t('products.programmingGuide'),
+    category: t('products.educationalBooks'),
     price: '$49',
   },
   {
     icon: BriefcaseIcon,
-    name: 'Business Laptop',
-    category: 'Work Equipment',
+    name: t('products.businessLaptop'),
+    category: t('products.workEquipment'),
     price: '$129',
   },
   {
     icon: MicrophoneIcon,
-    name: 'Podcast Microphone',
-    category: 'Audio Equipment',
+    name: t('products.podcastMicrophone'),
+    category: t('products.audioEquipment'),
     price: '$79',
   },
 ]);
 
-const recentActivities = ref<Activity[]>([
+// Recent Activities - به صورت computed
+const recentActivities = computed((): Activity[] => [
   {
     icon: ShoppingBagIcon,
-    title: 'New Order Received',
-    time: '2 hours ago',
-    description: 'Customer #1242 placed an order for $345.00',
+    title: t('activities.newOrderReceived'),
+    time: t('activities.timeAgo', { time: '2' }),
+    description: t('activities.customerOrder', {
+      id: '1242',
+      amount: '$345.00',
+    }),
   },
   {
     icon: UserPlusIcon,
-    title: 'New Customer Registered',
-    time: '4 hours ago',
-    description: 'John Smith created a new account',
+    title: t('activities.newCustomerRegistered'),
+    time: t('activities.timeAgo', { time: '4' }),
+    description: t('activities.customerCreated', { name: 'John Smith' }),
   },
   {
     icon: ChatBubbleLeftRightIcon,
-    title: 'New Review',
-    time: 'Yesterday',
-    description: 'Customer #3214 left a 5-star review',
+    title: t('activities.newReview'),
+    time: t('activities.yesterday'),
+    description: t('activities.customerReview', { id: '3214' }),
   },
   {
     icon: TruckIcon,
-    title: 'Order Shipped',
-    time: 'Yesterday',
-    description: 'Order #5678 has been shipped to customer',
+    title: t('activities.orderShipped'),
+    time: t('activities.yesterday'),
+    description: t('activities.orderShippedDescription', { id: '5678' }),
   },
 ]);
 
@@ -137,16 +148,31 @@ onMounted((): void => {
   initMainChart();
 });
 
+onUnmounted((): void => {
+  if (mainChart) {
+    mainChart.destroy();
+    mainChart = null;
+  }
+});
+
 // Methods
 function initMainChart(): void {
   const chartCtx = mainChartRef.value?.getContext('2d');
   if (!chartCtx) return;
 
   const chartData: ChartData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+    labels: [
+      t('months.jan'),
+      t('months.feb'),
+      t('months.mar'),
+      t('months.apr'),
+      t('months.may'),
+      t('months.jun'),
+      t('months.jul'),
+    ],
     datasets: [
       {
-        label: 'Revenue',
+        label: t('charts.revenue'),
         data: [12000, 19000, 15000, 18000, 22000, 24000, 28000],
         borderColor: '#50c878',
         backgroundColor: 'rgba(80, 200, 120, 0.1)',
@@ -195,10 +221,27 @@ function initMainChart(): void {
   mainChart = new Chart(chartCtx, config);
 }
 
-onUnmounted((): void => {
+// نظارت بر تغییرات زبان برای به‌روزرسانی نمودار
+watch(locale, () => {
   if (mainChart) {
-    mainChart.destroy();
-    mainChart = null;
+    // به‌روزرسانی برچسب‌های نمودار
+    mainChart.data.labels = [
+      t('months.jan'),
+      t('months.feb'),
+      t('months.mar'),
+      t('months.apr'),
+      t('months.may'),
+      t('months.jun'),
+      t('months.jul'),
+    ];
+
+    // به‌روزرسانی عنوان dataset
+    if (mainChart.data.datasets && mainChart.data.datasets.length > 0) {
+      mainChart.data.datasets[0].label = t('charts.revenue');
+    }
+
+    // اعمال تغییرات
+    mainChart.update();
   }
 });
 </script>
@@ -222,20 +265,20 @@ onUnmounted((): void => {
       class="lg:col-span-2 bg-teal-950 rounded-xl p-6 border border-gray-700"
     >
       <div class="flex justify-between items-center mb-6">
-        <h3 class="font-semibold">Revenue Overview</h3>
+        <h3 class="font-semibold">{{ $t('charts.revenueOverview') }}</h3>
         <div class="flex space-x-2">
           <button class="px-3 py-1 text-xs bg-teal-500 text-black rounded-lg">
-            Month
+            {{ $t('months.months') }}
           </button>
           <button
             class="px-3 py-1 text-xs bg-teal-950 text-gray-300 rounded-lg"
           >
-            Week
+            {{ $t('months.week') }}
           </button>
           <button
             class="px-3 py-1 text-xs bg-teal-950 text-gray-300 rounded-lg"
           >
-            Day
+            {{ $t('months.day') }}
           </button>
         </div>
       </div>
@@ -246,7 +289,7 @@ onUnmounted((): void => {
 
     <!-- Progress Chart -->
     <div class="bg-teal-950 rounded-xl p-6 border border-gray-700">
-      <h3 class="font-semibold mb-6">Sales Target</h3>
+      <h3 class="font-semibold mb-6">{{ $t('charts.salesTarget') }}</h3>
       <div class="flex flex-col items-center">
         <div class="relative w-40 h-40 mb-4">
           <svg class="w-full h-full" viewBox="0 0 100 100">
@@ -276,20 +319,20 @@ onUnmounted((): void => {
             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
           >
             <span class="text-2xl font-bold">70%</span>
-            <p class="text-xs text-gray-400">Completed</p>
+            <p class="text-xs text-gray-400">{{ $t('charts.completed') }}</p>
           </div>
         </div>
         <div class="w-full">
           <div class="flex justify-between text-xs text-gray-400 mb-1">
-            <span>Target</span>
+            <span>{{ $t('charts.target') }}</span>
             <span>$50,000</span>
           </div>
           <div class="flex justify-between text-xs text-gray-400 mb-1">
-            <span>Achieved</span>
+            <span>{{ $t('charts.achieved') }}</span>
             <span>$35,000</span>
           </div>
           <div class="flex justify-between text-xs text-green-400 mb-1">
-            <span>Remaining</span>
+            <span> {{ $t('charts.remaining') }}</span>
             <span>$15,000</span>
           </div>
         </div>
