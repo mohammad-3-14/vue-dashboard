@@ -1,0 +1,98 @@
+{
+  "header": {
+    "dashboard": "داشبورد",
+    "toggleSidebar": "باز/بسته کردن منو",
+    "notifications": "اعلان‌ها",
+    "language": "زبان",
+    "darkmode": "حالت تاریک"
+  },
+  "sidebar": {
+    "title": " داشبورد",
+    "dashboard": "داشبورد",
+    "analytics": "تحلیل‌ها",
+    "finance": "امور مالی",
+    "customers": "مشتریان",
+    "settings": "تنظیمات",
+    "user_name": "جان دو",
+    "user_role": "مدیر"
+  },
+  "dashboard": {
+    "title": "داشبورد",
+    "welcome": "خوش آمدید",
+    "totalRevenue": "درآمد کل",
+    "newCustomers": "مشتریان جدید",
+    "activeProjects": "پروژه‌های فعال",
+    "conversionRate": "نرخ تبدیل",
+    "changeFromLastMonth": "{value} نسبت به ماه قبل",
+    "revenueOverview": "نمای کلی درآمد",
+    "topProducts": "محصولات برتر",
+    "recentActivity": "فعالیت‌های اخیر"
+  },
+  "products": {
+    "iphone14": "آیفون ۱۴ پرو مکس",
+    "mobilePhones": "تلفن‌های همراه",
+    "onlineCourse": "دوره آموزش توسعه وب",
+    "education": "آموزش",
+    "programmingGuide": "راهنمای کامل برنامه‌نویسی",
+    "educationalBooks": "کتاب‌های آموزشی",
+    "businessLaptop": "لپ‌تاپ حرفه‌ای کسب و کار",
+    "workEquipment": "تجهیزات کاری",
+    "podcastMicrophone": "میکروفون پادکست",
+    "audioEquipment": "تجهیزات صوتی",
+    "topProducts": "محصولات برتر",
+    "viewAllProducts": "مشاهده همه محصولات"
+  },
+  "activities": {
+    "newOrderReceived": "سفارش جدید دریافت شد",
+    "timeAgo": "{time} ساعت پیش",
+    "customerOrder": "مشتری سفارش #{id} به مبلغ {amount} ثبت کرد",
+    "newCustomerRegistered": "مشتری جدید ثبت‌نام کرد",
+    "customerCreated": "حساب کاربری برای {name} ایجاد شد",
+    "newReview": "نظر جدید دریافت شد",
+    "yesterday": "دیروز",
+    "customerReview": "مشتری برای محصول #{id} نظر ثبت کرد",
+    "orderShipped": "سفارش ارسال شد",
+    "orderShippedDescription": "سفارش #{id} برای مشتری ارسال شد",
+    "viewAllActivity": "مشاهده همه فعالیت‌ها",
+    "recentActivity": "فعالیت‌های اخیر"
+  },
+  "charts": {
+    "revenue": "درآمد",
+    "sales": "فروش",
+    "expenses": "هزینه‌ها",
+    "customers": "مشتریان",
+    "revenueOverview": "نمای کلی درآمد",
+    "salesTarget": "هدف فروش",
+    "completed": "تکمیل شده",
+    "target": "هدف",
+    "achieved": "دریافت شده",
+    "remaining": "باقیمانده"
+  },
+  "months": {
+    "jan": "فروردین",
+    "feb": "اردیبهشت",
+    "mar": "خرداد",
+    "apr": "تیر",
+    "may": "مرداد",
+    "jun": "شهریور",
+    "jul": "مهر",
+    "aug": "آبان",
+    "sep": "آذر",
+    "oct": "دی",
+    "nov": "بهمن",
+    "dec": "اسفند",
+    "months": "ماه‌ها",
+    "week": "هفته",
+    "day": "روز"
+  },
+  "common": {
+    "viewAll": "مشاهده همه",
+    "seeMore": "بیشتر",
+    "loading": "در حال بارگذاری...",
+    "noData": "داده‌ای موجود نیست",
+    "search": "جستجو",
+    "filter": "فیلتر",
+    "sort": "مرتب‌سازی",
+    "fromLastMonth": "از ماه قبل"
+  }
+}
