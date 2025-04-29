@@ -4,7 +4,7 @@ A professional **Vue 3 admin panel** with full **TypeScript** support and **mult
 
 > ⚡ Perfect for dashboards, web apps, CMS panels, and internal admin tools.
 
-![Vue Dashboard Preview](./screenshot.png)
+![Vue Dashboard Preview](./screen1.jpg)
 
 ---
 
@@ -14,7 +14,7 @@ A professional **Vue 3 admin panel** with full **TypeScript** support and **mult
 
 > ⚡ ایده‌آل برای پنل‌های مدیریت، سیستم‌های مدیریت محتوا، وب‌اپلیکیشن‌ها و ابزارهای داخلی سازمانی.
 
-![پیش‌نمایش داشبورد Vue](./screenshot.png)
+![پیش‌نمایش داشبورد Vue](./screen1.jpg)
 
 ---
 
