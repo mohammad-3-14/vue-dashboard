@@ -1,0 +1,98 @@
+{
+  "header": {
+    "dashboard": "Dashboard",
+    "toggleSidebar": "Toggle Sidebar",
+    "notifications": "Notifications",
+    "language": "Language",
+    "darkmode": "Dark Mode"
+  },
+  "sidebar": {
+    "title": "EmeraldDash",
+    "dashboard": "Dashboard",
+    "analytics": "Analytics",
+    "finance": "Finance",
+    "customers": "Customers",
+    "settings": "Settings",
+    "user_name": "John Doe",
+    "user_role": "Admin"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "totalRevenue": "Total Revenue",
+    "newCustomers": "New Customers",
+    "activeProjects": "Active Projects",
+    "conversionRate": "Conversion Rate",
+    "changeFromLastMonth": "{value} from last month",
+    "revenueOverview": "Revenue Overview",
+    "topProducts": "Top Products",
+    "recentActivity": "Recent Activity"
+  },
+  "products": {
+    "iphone14": "iPhone 14 Pro Max",
+    "mobilePhones": "Mobile Phones",
+    "onlineCourse": "Web Development Course",
+    "education": "Education",
+    "programmingGuide": "Complete Programming Guide",
+    "educationalBooks": "Educational Books",
+    "businessLaptop": "Business Laptop Pro",
+    "workEquipment": "Work Equipment",
+    "podcastMicrophone": "Podcast Microphone",
+    "audioEquipment": "Audio Equipment",
+    "topProducts": "Top Products",
+    "viewAllProducts": "View All Products"
+  },
+  "activities": {
+    "newOrderReceived": "New Order Received",
+    "timeAgo": "{time} hours ago",
+    "customerOrder": "Customer placed order #${id} for ${amount}",
+    "newCustomerRegistered": "New Customer Registered",
+    "customerCreated": "Customer account created for {name}",
+    "newReview": "New Review Received",
+    "yesterday": "Yesterday",
+    "customerReview": "Customer left a review for product #${id}",
+    "orderShipped": "Order Shipped",
+    "orderShippedDescription": "Order #${id} has been shipped to customer",
+    "viewAllActivity": "View All Activity",
+    "recentActivity": "Recent Activity"
+  },
+  "charts": {
+    "revenue": "Revenue",
+    "sales": "Sales",
+    "expenses": "Expenses",
+    "customers": "Customers",
+    "revenueOverview":"Revenue Overview",
+    "salesTarget": "Sales Target",
+    "completed": "Completed",
+    "target": "Target",
+    "achieved": "Achieved",
+    "remaining": "Remaining"
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "May",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec",
+    "months": "Months",
+    "week": "Week",
+    "day": "Day"
+  },
+  "common": {
+    "viewAll": "View All",
+    "seeMore": "See More",
+    "loading": "Loading...",
+    "noData": "No data available",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "fromLastMonth": "from last month"
+  }
+}
