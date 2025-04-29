@@ -1,42 +1,36 @@
 <template>
-  <div class="relative inline-block">
-    <!-- محتوای اصلی که tooltip روی آن نمایش داده می‌شود -->
+  <div class="tooltip-container w-fit">
     <div
       ref="trigger"
       @mouseenter="showTooltip"
       @mouseleave="hideTooltip"
       @focus="showTooltip"
       @blur="hideTooltip"
+      @click="handleClick"
     >
       <slot></slot>
     </div>
 
-    <!-- تولتیپ -->
     <transition
-      enter-active-class="transition duration-200 ease-out"
-      enter-from-class="opacity-0 scale-95"
-      enter-to-class="opacity-100 scale-100"
-      leave-active-class="transition duration-150 ease-in"
-      leave-from-class="opacity-100 scale-100"
-      leave-to-class="opacity-0 scale-95"
+      enter-active-class="tooltip-enter"
+      enter-from-class="tooltip-enter-from"
+      enter-to-class="tooltip-enter-to"
+      leave-active-class="tooltip-leave"
+      leave-from-class="tooltip-leave-from"
+      leave-to-class="tooltip-leave-to"
     >
       <div
         v-show="isVisible"
-        class="absolute z-50 px-3 py-2 text-sm font-medium bg-teal-600 text-gray-900 rounded-md shadow-sm whitespace-nowrap border-0"
+        class="tooltip"
         :class="positionClasses"
         role="tooltip"
+        @mouseenter="tooltipMouseEnter"
+        @mouseleave="tooltipMouseLeave"
       >
         {{ text }}
-        <!-- مثلث کوچک (arrow) -->
         <div
-          class="absolute w-3 h-3 bg-teal-600 border-0 transform rotate-45"
-          :class="[
-            arrowPositionClasses,
-            { 'border-r border-b': position === 'top' },
-            { 'border-l border-t': position === 'bottom' },
-            { 'border-t border-r': position === 'left' },
-            { 'border-b border-l': position === 'right' },
-          ]"
+          class="tooltip-arrow"
+          :class="arrowPositionClasses"
         ></div>
       </div>
     </transition>
@@ -44,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onBeforeUnmount } from 'vue';
+import { defineComponent, ref, computed, onBeforeUnmount, onMounted } from 'vue';
 
 type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
 
@@ -52,64 +46,62 @@ export default defineComponent({
   name: 'Tooltip',
 
   props: {
-    // متن داخل تولتیپ
     text: {
       type: String,
       required: true,
     },
-
-    // موقعیت تولتیپ: بالا، پایین، چپ، راست
     position: {
       type: String as () => TooltipPosition,
       default: 'top',
       validator: (value: string): boolean =>
         ['top', 'bottom', 'left', 'right'].includes(value),
     },
-
-    // زمان تاخیر برای نمایش تولتیپ (میلی‌ثانیه)
     delay: {
       type: Number,
       default: 0,
+    },
+    closeOnClick: {
+      type: Boolean,
+      default: true,
     },
   },
 
   setup(props) {
     const isVisible = ref<boolean>(false);
+    const isHoveringTooltip = ref<boolean>(false);
     let timeoutId: number | null = null;
+    let clickOutsideHandler: ((event: MouseEvent) => void) | null = null;
 
-    // کلاس‌های مربوط به موقعیت تولتیپ
     const positionClasses = computed<string>(() => {
       switch (props.position) {
         case 'top':
-          return 'bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 mb-1';
+          return 'tooltip-top';
         case 'bottom':
-          return 'top-full left-1/2 transform -translate-x-1/2 translate-y-2 mt-1';
+          return 'tooltip-bottom';
         case 'left':
-          return 'right-full top-1/2 transform -translate-y-1/2 -translate-x-2 mr-1';
+          return 'tooltip-left';
         case 'right':
-          return 'left-full top-1/2 transform -translate-y-1/2 translate-x-2 ml-1';
+          return 'tooltip-right';
         default:
-          return 'bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 mb-1';
+          return 'tooltip-top';
       }
     });
 
-    // کلاس‌های مربوط به موقعیت مثلث (arrow)
     const arrowPositionClasses = computed<string>(() => {
       switch (props.position) {
         case 'top':
-          return 'bottom-0 left-1/2 -mb-1.5 -ml-1.5 border-t-0 border-l-0';
+          return 'arrow-top';
         case 'bottom':
-          return 'top-0 left-1/2 -mt-1.5 -ml-1.5 border-b-0 border-r-0';
+          return 'arrow-bottom';
         case 'left':
-          return 'right-0 top-1/2 -mr-1.5 -mt-1.5 border-l-0 border-b-0';
+          return 'arrow-left';
         case 'right':
-          return 'left-0 top-1/2 -ml-1.5 -mt-1.5 border-r-0 border-t-0';
+          return 'arrow-right';
         default:
-          return 'bottom-0 left-1/2 -mb-1.5 -ml-1.5 border-t-0 border-l-0';
+          return 'arrow-top';
       }
     });
 
-    // نمایش تولتیپ
     const showTooltip = (): void => {
       if (timeoutId !== null) {
         clearTimeout(timeoutId);
@@ -124,18 +116,60 @@ export default defineComponent({
       }
     };
 
-    // مخفی کردن تولتیپ
     const hideTooltip = (): void => {
       if (timeoutId !== null) {
         clearTimeout(timeoutId);
       }
-      isVisible.value = false;
+      
+      // Only hide if we're not hovering over the tooltip itself
+      if (!isHoveringTooltip.value) {
+        isVisible.value = false;
+      }
+    };
+    
+    const tooltipMouseEnter = (): void => {
+      isHoveringTooltip.value = true;
+    };
+    
+    const tooltipMouseLeave = (): void => {
+      isHoveringTooltip.value = false;
+      hideTooltip();
+    };
+    
+    const handleClick = (): void => {
+      if (props.closeOnClick) {
+        isVisible.value = false;
+      }
+    };
+    
+    // Handle clicks outside the tooltip to close it
+    const handleClickOutside = (event: MouseEvent): void => {
+      const target = event.target as HTMLElement;
+      const tooltipElement = document.querySelector('.tooltip');
+      const triggerElement = document.querySelector('.tooltip-container');
+      
+      if (tooltipElement && 
+          triggerElement && 
+          !tooltipElement.contains(target) && 
+          !triggerElement.contains(target)) {
+        isVisible.value = false;
+      }
     };
 
-    // اطمینان از پاکسازی تایمر در صورت حذف کامپوننت
+    onMounted(() => {
+      // Add global click listener to close tooltip when clicking outside
+      clickOutsideHandler = handleClickOutside;
+      document.addEventListener('click', clickOutsideHandler);
+    });
+
     onBeforeUnmount(() => {
       if (timeoutId !== null) {
         clearTimeout(timeoutId);
+      }
+      
+      // Remove global click listener
+      if (clickOutsideHandler) {
+        document.removeEventListener('click', clickOutsideHandler);
       }
     });
 
@@ -145,7 +179,120 @@ export default defineComponent({
       arrowPositionClasses,
       showTooltip,
       hideTooltip,
+      tooltipMouseEnter,
+      tooltipMouseLeave,
+      handleClick,
     };
   },
 });
 </script>
+
+<style scoped>
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 4px 8px;
+  font-size: 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 3px;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #333;
+  transform: rotate(45deg);
+}
+
+/* Position classes */
+.tooltip-top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  margin-bottom: 4px;
+}
+
+.tooltip-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  margin-top: 4px;
+}
+
+.tooltip-left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  margin-right: 4px;
+}
+
+.tooltip-right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+  margin-left: 4px;
+}
+
+/* Arrow position classes */
+.arrow-top {
+  bottom: -3px;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.arrow-bottom {
+  top: -3px;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.arrow-left {
+  right: -3px;
+  top: 50%;
+  margin-top: -3px;
+}
+
+.arrow-right {
+  left: -3px;
+  top: 50%;
+  margin-top: -3px;
+}
+
+/* Transition classes */
+.tooltip-enter {
+  transition: all 0.15s ease-out;
+}
+
+.tooltip-enter-from {
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(0.95) translateX(-50%) translateY(-4px);
+}
+
+.tooltip-enter-to {
+  opacity: 1;
+}
+
+.tooltip-leave {
+  transition: all 0.1s ease-in;
+}
+
+.tooltip-leave-from {
+  opacity: 1;
+}
+
+.tooltip-leave-to {
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(0.95) translateX(-50%) translateY(-4px);
+}
+</style>
