@@ -39,19 +39,4 @@ A professional **Vue 3 admin panel** with full **TypeScript** support and **mult
 - [Vue I18n](https://vue-i18n.intlify.dev/) (for multilingual support)
 
 ---
-
-## 🧩 Folder Structure | ساختار پروژه
-
-```bash
-src/
-├── assets/
-├── components/
-│   └── NavigationMenu.vue
-├── i18n/
-│   └── en.json
-│   └── fa.json
-├── layouts/
-├── pages/
-├── stores/
-├── App.vue
-├── main.ts
+ 
