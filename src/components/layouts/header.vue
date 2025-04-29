@@ -9,15 +9,18 @@ import {
   ArrowsPointingInIcon,
   BellIcon,
   SunIcon,
-  MoonIcon,
-  ChevronDownIcon,
+  Squares2X2Icon,
 } from '@heroicons/vue/24/outline';
 
-const emit = defineEmits(['toggleSidebar']);
+const emit = defineEmits(['toggleSidebar', 'toggleDrawer']);
 
-const toggleSidebar = () => {
+const toggleSidebar = (): void => {
   emit('toggleSidebar');
   isSidebarCollapsed.value = !isSidebarCollapsed.value;
+};
+
+const toggleDrawer = (): void => {
+  emit('toggleDrawer');
 };
 
 const isSidebarCollapsed = ref<boolean>(true);
@@ -39,11 +42,16 @@ const toggleLanguage = () => {
     >
       <div class="flex items-center justify-between gap-12">
         <Tooltip :text="$t('header.toggleSidebar')" position="bottom">
-          <Button @click="toggleSidebar">
+          <Button @click="toggleSidebar" class="hidden md:block">
             <ArrowsPointingOutIcon class="w-5 h-5" v-if="isSidebarCollapsed" />
             <ArrowsPointingInIcon class="w-5 h-5" v-else />
           </Button>
+
+          <Button @click="toggleDrawer" class="md:hidden">
+            <Squares2X2Icon class="w-5 h-5" />
+          </Button>
         </Tooltip>
+
         <h2 class="text-xl font-semibold">{{ $t('header.dashboard') }}</h2>
       </div>
 
