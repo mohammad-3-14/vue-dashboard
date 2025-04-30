@@ -42,10 +42,10 @@ const navItems: NavItem[] = [
         :key="`collapsed-${index}`"
         href="#"
         :class="[
-          'hover:bg-black/20 flex items-center justify-center py-3 rounded-lg h-12 transition-all duration-300 px-2',
+          'hover:bg-core-800 flex items-center justify-center py-3 rounded-lg h-12 transition-all duration-300 px-2',
           item.active
-            ? 'text-green-400 bg-black/40'
-            : 'text-gray-300 hover:text-green-400',
+            ? 'text-primary bg-core-900'
+            : 'text-text hover:text-primary',
         ]"
         @click="emit('closeDrawer')"
       >
@@ -60,10 +60,10 @@ const navItems: NavItem[] = [
         :key="`expanded-${index}`"
         href="#"
         :class="[
-          'hover:bg-black/20 flex items-center py-3 rounded-lg h-12 transition-all duration-300 px-4',
+          'hover:bg-core-900 flex items-center py-3 rounded-lg h-12 transition-all duration-300 px-4',
           item.active
-            ? 'text-green-400 bg-black/40'
-            : 'text-gray-300 hover:text-green-400',
+            ? 'text-primary bg-core-900'
+            : 'text-text hover:text-primary',
         ]"
         @click="emit('closeDrawer')"
       >

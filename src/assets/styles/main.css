@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: Estedad-FD;
+  src: url(./../fonts/Estedad-FD-Regular.woff2);
+  width: 400;
+}
+
+@font-face {
+  font-family: Estedad-FD;
+  src: url(./../fonts/Estedad-FD-Bold.woff2);
+  width: 700;
+}
+
+@font-face {
+  font-family: Estedad-FD;
+  src: url(./../fonts/Estedad-FD-Black.woff2);
+  width: 900;
+}
+
+@font-face {
+  font-family: Estedad;
+  src: url(./../fonts/Estedad-Regular.woff2);
+  width: 400;
+}
+
+@font-face {
+  font-family: Estedad;
+  src: url(./../fonts/Estedad-Bold.woff2);
+  width: 700;
+}
+
+@font-face {
+  font-family: Estedad;
+  src: url(./../fonts/Estedad-Black.woff2);
+  width: 900;
+}
+
+:lang(fa) {
+  font-family: Estedad-FD;
+}
+:lang(en) {
+  font-family: Estedad;
+}
+
+:root {
+  --core-50: #e6fff2;
+  --core-95: #ccffea;
+  --core-100: #b3ffe1;
+  --core-200: #99ffd8;
+  --core-400: #80ffd0;
+  --core-500: #66ffc7;
+  --core-600: #4dffbe;
+  --core-700: #33ffb6;
+  --core-800: #1affad;
+  --core-900: #c3f8e5;
+  --core-950: #ffffff; /* پررنگ‌ترین رنگ */
+  --primary: #1ba81b;
+  --secondary: #7efcc9;
+  --text: #073b29;
+  --sub-text: #437c69;
+}
+
+.dark {
+  --core-50: #f0fdfa;
+  --core-95: #ccfbf1;
+  --core-100: #99f6e4;
+  --core-200: #5eead4;
+  --core-400: #28c9b9;
+  --core-500: #0f9c8b;
+  --core-600: #0c7066;
+  --core-700: #11684e;
+  --core-800: #125c3e;
+  --core-900: #154940;
+  --core-950: #022f2e; /* پررنگ‌ترین رنگ */
+  --primary: #14b853;
+  --secondary: #5eeab4;
+  --text: white;
+  --sub-text: rgb(211, 200, 200);
+}
+
+@theme {
+  --color-core-50: var(--core-50);
+  --color-core-100: var(--core-100);
+  --color-core-200: var(--core-200);
+  --color-core-300: var(--core-300);
+  --color-core-400: var(--core-400);
+  --color-core-500: var(--core-500);
+  --color-core-600: var(--core-600);
+  --color-core-700: var(--core-700);
+  --color-core-800: var(--core-800);
+  --color-core-900: var(--core-900);
+  --color-core-950: var(--core-950);
+  --color-text: var(--text);
+  --color-sub-text: var(--sub-text);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+}

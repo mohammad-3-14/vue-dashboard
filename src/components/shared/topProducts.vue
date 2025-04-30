@@ -11,7 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="bg-teal-950 rounded-xl p-6 border border-gray-700">
+  <div class="bg-core-950 rounded-xl p-6 shadow-2xl">
     <h3 class="font-semibold mb-6">{{ $t('products.topProducts') }}</h3>
     <div class="space-y-4">
       <div
@@ -20,25 +20,21 @@ const props = defineProps({
         class="flex items-center"
       >
         <div
-          class="w-10 h-10 rounded-lg bg-teal-800 bg-opacity-10 flex items-center justify-center me-4"
+          class="w-10 h-10 rounded-lg bg-core-900 flex items-center justify-center me-4"
         >
-          <component
-            :is="product.icon"
-            class="text-green-400 stroke-2 size-6"
-          />
+          <component :is="product.icon" class="text-primary stroke-2 size-6" />
         </div>
         <div class="flex-1">
-          <h4 class="font-medium">{{ product.name }}</h4>
-          <p class="text-xs text-gray-400">{{ product.category }}</p>
+          <p class="font-medium text-text">{{ product.name }}</p>
+          <p class="text-xs text-sub-text mt-1">{{ product.category }}</p>
         </div>
-        <div class="text-green-400 font-medium">
+        <div class="text-primary font-medium">
           {{ product.price }}
         </div>
       </div>
     </div>
-    <button class="mt-6 text-green-400 text-sm font-medium flex items-center">
-    {{ $t('products.viewAllProducts') }}
-      
+    <button class="mt-6 text-primary text-sm font-medium flex items-center">
+      {{ $t('products.viewAllProducts') }}
     </button>
   </div>
 </template>
