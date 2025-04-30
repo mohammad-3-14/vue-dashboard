@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import { useLanguage } from '@/composables/useLanguage';
 import Button from '@/components/shared/button.vue';
 import Tooltip from '@/components/shared/tooltip.vue';
+import { useTheme } from '@/composables/useTheme';
+const { toggleTheme } = useTheme();
 
 import {
   ArrowsPointingOutIcon,
@@ -30,15 +32,15 @@ const { setLanguage, language } = useLanguage();
 // تعداد نوتیفیکیشن به صورت داینامیک
 const notificationsCount = ref<number>(5);
 
-const toggleLanguage = () => {
+const toggleLanguage = (): void => {
   setLanguage(language.value === 'fa' ? 'en' : 'fa');
 };
 </script>
 
 <template>
-  <div class="sticky top-0 pt-3 bg-teal-900">
+  <div class="sticky top-0 bg-core-900 pt-2">
     <header
-      class="bg-teal-950 border-b border-gray-700 p-4 rounded-xl flex items-center justify-between"
+      class="bg-core-950 shadow p-4 rounded-xl flex items-center justify-between "
     >
       <div class="flex items-center justify-between gap-12">
         <Tooltip :text="$t('header.toggleSidebar')" position="bottom">
@@ -128,8 +130,8 @@ const toggleLanguage = () => {
         </div>
 
         <Tooltip :text="$t('header.darkmode')" position="bottom">
-          <Button>
-            <SunIcon class="size-5 text-green-400" />
+          <Button @click="toggleTheme">
+            <SunIcon class="size-5 text-primary" />
           </Button>
         </Tooltip>
       </div>
