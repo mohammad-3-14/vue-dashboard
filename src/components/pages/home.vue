@@ -261,22 +261,20 @@ watch(locale, () => {
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
     <!-- Main Chart -->
-    <div
-      class="lg:col-span-2 bg-teal-950 rounded-xl p-6 border border-gray-700"
-    >
+    <div class="lg:col-span-2 bg-core-950 rounded-xl p-6 shadow-2xl">
       <div class="flex justify-between items-center mb-6">
         <h3 class="font-semibold">{{ $t('charts.revenueOverview') }}</h3>
         <div class="flex space-x-2">
-          <button class="px-3 py-1 text-xs bg-teal-500 text-black rounded-lg">
+          <button class="px-3 py-1 text-xs bg-core-600 text-text rounded-lg">
             {{ $t('months.months') }}
           </button>
           <button
-            class="px-3 py-1 text-xs bg-teal-950 text-gray-300 rounded-lg"
+            class="px-3 py-1 text-xs bg-core-950 text-sub-text rounded-lg"
           >
             {{ $t('months.week') }}
           </button>
           <button
-            class="px-3 py-1 text-xs bg-teal-950 text-gray-300 rounded-lg"
+            class="px-3 py-1 text-xs bg-core-950 text-sub-text rounded-lg"
           >
             {{ $t('months.day') }}
           </button>
@@ -288,13 +286,13 @@ watch(locale, () => {
     </div>
 
     <!-- Progress Chart -->
-    <div class="bg-teal-950 rounded-xl p-6 border border-gray-700">
+    <div class="bg-core-950 rounded-xl p-6 shadow-2xl">
       <h3 class="font-semibold mb-6">{{ $t('charts.salesTarget') }}</h3>
       <div class="flex flex-col items-center">
         <div class="relative w-40 h-40 mb-4">
           <svg class="w-full h-full" viewBox="0 0 100 100">
             <circle
-              class="text-gray-700"
+              class="text-core-800"
               stroke-width="8"
               stroke="currentColor"
               fill="transparent"
@@ -303,7 +301,7 @@ watch(locale, () => {
               cy="50"
             />
             <circle
-              class="text-green-400 progress-ring__circle"
+              class="text-primary progress-ring__circle"
               stroke-width="8"
               :stroke-dasharray="circumference"
               :stroke-dashoffset="dashOffset"
@@ -318,20 +316,20 @@ watch(locale, () => {
           <div
             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center"
           >
-            <span class="text-2xl font-bold">70%</span>
-            <p class="text-xs text-gray-400">{{ $t('charts.completed') }}</p>
+            <span class="text-2xl font-bold text-text">70%</span>
+            <p class="text-xs text-sub-text">{{ $t('charts.completed') }}</p>
           </div>
         </div>
         <div class="w-full">
-          <div class="flex justify-between text-xs text-gray-400 mb-1">
+          <div class="flex justify-between text-xs text-sub-text mb-1">
             <span>{{ $t('charts.target') }}</span>
             <span>$50,000</span>
           </div>
-          <div class="flex justify-between text-xs text-gray-400 mb-1">
+          <div class="flex justify-between text-xs text-sub-text mb-1">
             <span>{{ $t('charts.achieved') }}</span>
             <span>$35,000</span>
           </div>
-          <div class="flex justify-between text-xs text-green-400 mb-1">
+          <div class="flex justify-between text-xs text-primary mb-1">
             <span> {{ $t('charts.remaining') }}</span>
             <span>$15,000</span>
           </div>
@@ -340,10 +338,13 @@ watch(locale, () => {
     </div>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-4">
     <RecentActivity :recentActivities="recentActivities" />
     <TopProducts :topProducts="topProducts" />
   </div>
+
+
+
 </template>
 
 <style>
