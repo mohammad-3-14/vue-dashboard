@@ -162,13 +162,13 @@ const closeDrawer = (): void => {
 };
 
 const sidebarClasses = computed<string[]>(() => [
-  'bg-teal-950 hidden shadow-lg md:flex sticky h-full top-24 flex-col max-h-[80dvh] min-h-96 rounded-xl transition-all duration-300',
+  'bg-core-950 hidden shadow-lg md:flex sticky h-full top-[6.5rem] flex-col max-h-[85dvh] min-h-96 rounded-xl transition-all duration-300',
   props.isSidebarCollapsed ? 'w-20' : 'w-64',
 ]);
 
 const iconContainerClasses = computed<string[]>(() => [
-  'hover:bg-black/20 flex items-center py-3 rounded-lg text-green-400 h-12 transition-all duration-300',
-  props.isSidebarCollapsed ? 'justify-center px-2' : 'px-4',
+  'hover:bg-black/20 flex items-center py-3 rounded-lg text-primary h-12 transition-all duration-300',
+  props.isSidebarCollapsed ? 'justify-center px-3' : 'px-4',
 ]);
 
 const titleClasses = computed<string[]>(() => [
@@ -176,20 +176,22 @@ const titleClasses = computed<string[]>(() => [
   props.isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100',
 ]);
 
-const profileDetailsClasses = computed<string[]>(() => [
-  'transition-opacity duration-300',
-  props.isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100',
-  isRTL.value ? 'me-3' : 'ms-3',
+const profileDetailsClasses = computed(() => [
+  'transition-all duration-300 ms-3 flex flex-col',
+  props.isSidebarCollapsed
+    ? 'opacity-0 hidden max-w-0 invisible'
+    : 'opacity-100 max-w-40 visible',
 ]);
 
-const settingsIconClasses = computed<string[]>(() => [
-  'relative transition-opacity duration-300',
-  props.isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100',
-  isRTL.value ? 'me-auto' : 'ms-auto',
+const settingsIconClasses = computed(() => [
+  'transition-all duration-300 ms-auto',
+  props.isSidebarCollapsed
+    ? 'opacity-0 hidden max-w-0 invisible'
+    : 'opacity-100 max-w-8 visible',
 ]);
 
 const drawerPositionClasses = computed<string[]>(() => [
-  'absolute inset-y-0 max-w-xs w-full bg-teal-950 shadow-xl',
+  'absolute inset-y-0 max-w-xs w-full bg-core-950 shadow-xl',
   isRTL.value ? 'right-0' : 'left-0',
 ]);
 
@@ -206,13 +208,10 @@ const iconMarginClass = computed<string>(() => {
 <template>
   <div>
     <aside :class="sidebarClasses">
-      <div class="pt-4 px-4 space-y-1 overflow-hidden">
+      <div class="pt-4 px-4 overflow-hidden">
         <div class="flex items-center justify-between">
           <div :class="iconContainerClasses">
-            <RocketLaunchIcon
-              class="w-6 h-6 min-w-6"
-              :class="iconMarginClass"
-            />
+            <RocketLaunchIcon class="w-6 h-6" :class="iconMarginClass" />
             <span :class="titleClasses">{{ $t('sidebar.title') }}</span>
           </div>
         </div>
@@ -221,12 +220,12 @@ const iconMarginClass = computed<string>(() => {
         :is-collapsed="props.isSidebarCollapsed"
         @close-drawer="closeDrawer"
       />
-      <div class="p-4 border-t border-gray-700">
-        <div class="flex items-center">
-          <div class="w-10 h-10 rounded-full bg-green-400 flex-none"></div>
+      <div class="p-4 border-t border-core-900">
+        <div class="flex items-center justify-center">
+          <div class="w-10 h-10 rounded-full bg-primary flex-none"></div>
           <div :class="profileDetailsClasses">
             <p class="text-sm font-medium">{{ $t('sidebar.user_name') }}</p>
-            <p class="text-xs text-gray-400">{{ $t('sidebar.user_role') }}</p>
+            <p class="text-xs text-sub-text">{{ $t('sidebar.user_role') }}</p>
           </div>
           <div :class="settingsIconClasses">
             <Cog6ToothIcon class="w-6 h-6 min-w-6" />
@@ -237,7 +236,7 @@ const iconMarginClass = computed<string>(() => {
 
     <Transition name="overlay">
       <div v-if="isDrawerOpen" class="fixed inset-0 z-50 overflow-hidden">
-        <div class="absolute inset-0 bg-black/50" @click="closeDrawer"></div>
+        <div class="absolute inset-0 bg-core-950/50" @click="closeDrawer"></div>
         <Transition
           :name="drawerTransformClass"
           appear
@@ -245,20 +244,20 @@ const iconMarginClass = computed<string>(() => {
         >
           <div :class="drawerPositionClasses">
             <div
-              class="flex items-center justify-between p-4 border-b border-gray-700"
+              class="flex items-center justify-between p-4 border-b border-core-800"
             >
               <div class="flex items-center">
                 <RocketLaunchIcon
-                  class="w-6 h-6 text-green-400"
+                  class="w-6 h-6 text-primary"
                   :class="isRTL ? 'ms-3' : 'me-3'"
                 />
-                <span class="text-green-400 font-medium">{{
+                <span class="text-primary font-medium">{{
                   $t('sidebar.title')
                 }}</span>
               </div>
               <button
                 @click="closeDrawer"
-                class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-black/20"
+                class="p-2 rounded-lg text-sub-text hover:text-text hover:bg-core-950/50 cursor-pointer"
                 aria-label="Close menu"
               >
                 <XMarkIcon class="w-6 h-6" />
@@ -271,22 +270,20 @@ const iconMarginClass = computed<string>(() => {
               />
             </div>
             <div
-              class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700 bg-teal-950"
+              class="absolute bottom-0 left-0 right-0 p-4 border-t border-core-800"
             >
               <div class="flex items-center">
-                <div
-                  class="w-10 h-10 rounded-full bg-green-400 flex-none"
-                ></div>
-                <div :class="isRTL ? 'me-3' : 'ms-3'">
+                <div class="w-10 h-10 rounded-full bg-primary flex-none"></div>
+                <div class="ms-3">
                   <p class="text-sm font-medium">
                     {{ $t('sidebar.user_name') }}
                   </p>
-                  <p class="text-xs text-gray-400">
+                  <p class="text-xs text-sub-text">
                     {{ $t('sidebar.user_role') }}
                   </p>
                 </div>
-                <div :class="isRTL ? 'ms-auto' : 'ms-auto'">
-                  <Cog6ToothIcon class="w-6 h-6 text-gray-400" />
+                <div class="ms-auto">
+                  <Cog6ToothIcon class="w-6 h-6 text-text" />
                 </div>
               </div>
             </div>
