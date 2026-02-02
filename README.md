@@ -1,42 +1,100 @@
-# 🌐 Vue 3 Admin Dashboard (TypeScript + i18n + Responsive)
+# 🌐 Vue Dashboard – Vue 3 Admin Panel (TypeScript, i18n, Responsive)
 
-A professional **Vue 3 admin panel** with full **TypeScript** support and **multi-language (i18n)** support — built for modern developers who need speed, scalability, and clean design.
+A modern and scalable **Vue Dashboard** and **Vue Admin Panel** built with **Vue 3**, **TypeScript**, and **Vite**.  
+This project is a clean and customizable **admin panel Vue** template, suitable for dashboards, CMS systems, and internal admin tools.
 
-> ⚡ Perfect for dashboards, web apps, CMS panels, and internal admin tools.
+> ⚡ A fast, professional **Vue admin panel** designed for real-world applications.
 
 ![Vue Dashboard Preview](./screen1.jpg)
 
 ---
 
-# 📌 پنل مدیریت ویو ۳ (تایپ‌اسکریپت + چندزبانه + ریسپانسیو)
+# 📌 داشبورد مدیریتی Vue 3 | پنل ادمین ویو (TypeScript + i18n)
 
-یک پنل مدیریتی حرفه‌ای با استفاده از **Vue 3**، پشتیبانی کامل از **TypeScript** و سیستم **چندزبانه (i18n)**. مناسب برای توسعه‌دهندگان حرفه‌ای که دنبال سرعت، سادگی و طراحی تمیز هستند.
+این پروژه یک **Vue Dashboard** و **Vue Admin Panel** حرفه‌ای است که با **Vue 3** و **TypeScript** توسعه داده شده.  
+یک قالب آماده و توسعه‌پذیر برای ساخت **admin panel vue** جهت پنل‌های مدیریتی، داشبوردها و سیستم‌های سازمانی.
 
-> ⚡ ایده‌آل برای پنل‌های مدیریت، سیستم‌های مدیریت محتوا، وب‌اپلیکیشن‌ها و ابزارهای داخلی سازمانی.
+> ⚡ مناسب برای پنل مدیریت، CMS، داشبوردهای تحلیلی و وب‌اپلیکیشن‌های داخلی.
 
-![پیش‌نمایش داشبورد Vue](./screen2.jpg)
+![پیش‌نمایش پنل مدیریت Vue](./screen2.jpg)
 
 ---
 
-## 🔑 Features | امکانات
+## 🚀 Vue Dashboard Features | ویژگی‌ها
 
-- ✅ Vue 3 + Composition API
-- ✅ TypeScript Integrated
-- ✅ Multi-language support with i18n
-- ✅ Responsive design (Mobile friendly)
-- ✅ Modular folder structure
-- ✅ Customizable components
-- ✅ Dark Mode included
+- Modern **Vue 3 Admin Panel**
+- Fully typed **TypeScript** codebase
+- **Vue Dashboard** with responsive layout
+- Multi-language support using **Vue i18n**
+- Mobile-first & responsive design
+- Modular and scalable folder structure
+- Customizable UI components
+- Built-in Dark Mode
+
+---
+
+## 🧩 What is this Vue Admin Panel?
+
+This project is a ready-to-use **Vue admin panel** template for developers who want to build dashboards quickly using modern Vue tools.  
+It provides a solid foundation for any **vue dashboard** or **admin panel vue** project.
+
+---
+
+## 🧩 این پنل مدیریت Vue چیست؟
+
+این پروژه یک قالب آماده **پنل مدیریت Vue** است که به توسعه‌دهندگان کمک می‌کند سریع‌تر داشبوردها و پنل‌های مدیریتی حرفه‌ای بسازند.  
+مناسب برای هر نوع **Vue Dashboard** یا **Vue Admin Panel**.
 
 ---
 
 ## ⚙️ Tech Stack | تکنولوژی‌ها
 
-- [Vue 3](https://vuejs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Vite](https://vitejs.dev/)
-- [Vue Router](https://router.vuejs.org/)
-- [Vue I18n](https://vue-i18n.intlify.dev/) (for multilingual support)
+- **Vue 3**
+- **TypeScript**
+- **Vite**
+- **Vue Router**
+- **Vue I18n** (Multi-language support)
 
 ---
- 
+
+## 📦 Installation | نصب و اجرا
+
+```bash
+npm install
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+---
+
+## 🌐 Use Cases | موارد استفاده
+
+- Vue Admin Panel
+- Vue Dashboard
+- Admin Panel Vue for CMS
+- Internal company dashboards
+- Analytics & management panels
+
+---
+
+## 🔍 SEO Keywords
+
+```
+vue dashboard
+vue admin panel
+admin panel vue
+vue 3 admin dashboard
+vue dashboard template
+vue admin template
+```
+
+---
+
+## 📜 License
+
+MIT License — free to use for personal and commercial projects.
